@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>アンとももかのキャッチンコ！</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <div class="phone-shell">
+            <div class="warning" id="warningText">残り10秒！ラストスパート！</div>
+            <div class="flash" id="flashLayer"></div>
+
+            <!-- Title -->
+            <section id="titleScreen" class="screen title-screen active">
+                <div class="panel title-box">
+                    <h1>アンとももかの<br />キャッチンコ！</h1>
+                    <p>
+                        制限時間内にアイテムを集めてハイスコアを目指そう。<br />
+                        特殊アイテムを3つ集めるとスキルが使えるよ。
+                    </p>
+                </div>
+
+                <div class="panel tip-box">
+                    画面を左右にドラッグしてキャラを移動。<br />
+                    スキルは右下のボタンで発動できます。
+                </div>
+
+                <button class="primary-btn" id="goSelectBtn">START</button>
+            </section>
+
+            <!-- Select -->
+            <section id="selectScreen" class="screen">
+                <div class="panel select-header">
+                    <h2>キャラをえらぼう</h2>
+                    <p>カードをタップして選択。キャラごとに性能とスキルが違います。</p>
+                </div>
+
+                <div class="cards">
+                    <article class="card selected" data-char="ann">
+                        <img id="annCardImage" src="images/ann.png" alt="アン" />
+                        <span class="badge">スピード型</span>
+                        <h3>アン</h3>
+                        <ul>
+                            <li>移動速度が速い</li>
+                            <li>端のアイテムまで取りに行きやすい</li>
+                            <li>スキル：5秒間さらに高速移動</li>
+                        </ul>
+                    </article>
+
+                    <article class="card" data-char="momoka">
+                        <img id="momokaCardImage" src="images/momoka.png" alt="ももか" />
+                        <span class="badge badge-blue">安定型</span>
+                        <h3>ももか</h3>
+                        <ul>
+                            <li>キャッチ範囲が広い</li>
+                            <li>安定してアイテムを取りやすい</li>
+                            <li>スキル：5秒間スコア2倍</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="panel tip-box">
+                    <strong>アイテム:</strong> ちんちん +10 / ちんこ +20 / チンキング +30 / うんこ -15<br />
+                    <strong>特殊アイテム:</strong> ももチンコを3つ集めるとスキル使用可能
+                </div>
+
+                <div class="selection-footer">
+                    <button class="secondary-btn" id="backTitleBtn">もどる</button>
+                    <button class="primary-btn" id="startGameBtn">このキャラで開始</button>
+                </div>
+            </section>
+
+            <!-- Game -->
+            <section id="gameScreen" class="screen game-screen">
+                <div class="hud">
+                    <div class="panel hud-item">
+                        <div class="hud-label">SCORE</div>
+                        <div class="hud-value" id="scoreText">0</div>
+                    </div>
+
+                    <div class="panel hud-item">
+                        <div class="hud-label">TIME</div>
+                        <div class="hud-value" id="timeText">60</div>
+                    </div>
+
+                    <div class="panel hud-item">
+                        <div class="hud-label">SKILL</div>
+                        <div class="hud-value" id="skillText">0 / 3</div>
+                    </div>
+                </div>
+
+                <div class="panel game-area-wrap" id="touchArea">
+                    <canvas id="gameCanvas" width="390" height="540"></canvas>
+                    <div class="game-overlay" id="gameOverlay"></div>
+                    <button class="skill-fab disabled" id="skillBtn">SKILL</button>
+                </div>
+            </section>
+
+            <!-- Result -->
+            <section id="resultScreen" class="screen result-screen">
+                <div class="panel result-box">
+                    <h2>RESULT</h2>
+                    <div class="result-score" id="finalScoreText">0</div>
+                    <div class="result-character" id="finalCharacterText">使用キャラ：アン</div>
+                    <p>また遊んでスコア更新を目指そう！</p>
+
+                    <button class="primary-btn" id="retryBtn">もう一回あそぶ</button>
+                    <button class="secondary-btn" id="toSelectBtn">キャラ選択へ</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
